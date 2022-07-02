@@ -1,9 +1,11 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-use-before-define */
+/* eslint-disable prefer-template */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import { Link } from 'react-router-dom';
 
 function Veggie() {
   const [veggie, setVeggie] = useState([]);
@@ -41,9 +43,11 @@ function Veggie() {
           {veggie.map((recipe) => (
             <SplideSlide key={recipe.id}>
               <Card>
-                <p>{recipe.title}</p>
-                <img src={recipe.image} alt={recipe.title} />
-                <Gradient />
+                <Link to={'/recipe/' + recipe.id}>
+                  <p>{recipe.title}</p>
+                  <img src={recipe.image} alt={recipe.title} />
+                  <Gradient />
+                </Link>
               </Card>
             </SplideSlide>
           ))}
@@ -69,7 +73,7 @@ const Card = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    object-fix: cover;
+    object-fit: cover;
   }
 
   p {
